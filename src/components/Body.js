@@ -1,34 +1,48 @@
-// import { resData } from "../utills/constants";
-// import HotelCard from "./HotelCard";
-
-// const Body = () => {
-//   return (
-//     <div className="body-container">
-//       {resData.map((restaurant) => (
-//         <HotelCard key={restaurant.info.id} resData={restaurant.info} />
-//       ))}
-//     </div>
-//   );
-// };
-// export default Body;
-
-import { useState } from "react";
-import { resData } from "../utills/constants";
+import { useEffect, useState } from "react";
 import HotelCard from "./HotelCard";
-// What is state
-// what is React Hooks? - functions,
-// What is useState
+import Shimmer from "./Shimmer";
+
 function filterData(searchText, restaurants) {
   const filterData = restaurants.filter((restaurant) =>
-    restaurant.info.name.includes(searchText)
+    restaurant?.info?.name?.toLowerCase().includes(searchText?.toLowerCase())
   );
   return filterData;
 }
 const Body = () => {
-  const [restaurants, setRestaurants] = useState(resData);
+  const [rrestaurants, setRestaurants] = useState([]);
+  const [filterRes, setFilterRes] = useState(rrestaurants);
   const [searchText, setSearchText] = useState("");
-  return (
-    <>
+
+  async function FetchData() {
+    const res = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await res.json();
+
+    // console.log(
+    //   json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+    // );
+    setRestaurants(
+      json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+    setFilterRes(
+      json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+  }
+
+  useEffect(() => {
+    FetchData();
+  }, []);
+  function topRated() {
+    setFilterRes(filterRes?.filter((res) => res?.info?.avgRating > 4.2));
+  }
+
+  return filterRes?.length === 0 ? (
+    <Shimmer />
+  ) : (
+    <div>
       <div className="search-container">
         <input
           type="text"
@@ -43,20 +57,23 @@ const Body = () => {
           className="search-btn"
           onClick={() => {
             //need to filter the data
-            const data = filterData(searchText, restaurants);
+            const data = filterData(searchText, rrestaurants);
             // update the state - restaurants
-            setRestaurants(data);
+            setFilterRes(data);
           }}
         >
           Search
         </button>
+        <button className="search-btn" onClick={topRated}>
+          Top rated
+        </button>
       </div>
       <div className="body-container">
-        {restaurants.map((restaurant) => (
+        {filterRes.map((restaurant) => (
           <HotelCard key={restaurant.info.id} resData={restaurant.info} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 export default Body;
