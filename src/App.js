@@ -13,7 +13,7 @@ const FooterComponent = () => {
 
 const AppLayout = () => {
   return (
-    <div>
+    <div style={{ backgroundColor: "gray" }}>
       <Header />
       <Outlet />
       {/* <FooterComponent /> */}
