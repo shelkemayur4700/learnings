@@ -56,16 +56,16 @@ class UserClass extends React.Component {
     // const json = await data.json();
     // console.log(json);
     // this.setState({ data: json });
-    this.time = setInterval(() => {
-      console.log("timeout...");
-    }, 1000);
+    // this.time = setInterval(() => {
+    //   console.log("timeout...");
+    // }, 1000);
   }
   componentDidUpdate() {
     // console.log("Component did update");
   }
   componentWillUnmount() {
     // console.log("comonenetWillUnmount");
-    clearInterval(this.time);
+    // clearInterval(this.time);
   }
   render() {
     // console.log(this?.props?.name + "Child render");
