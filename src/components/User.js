@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const User = ({ name }) => {
- 
   useEffect(() => {
     const timer = setInterval(() => {
       console.log("Calling time interval");
@@ -16,8 +15,8 @@ const User = ({ name }) => {
   return (
     <div className="user-card">
       <h2>Name: {name + "Fumctional componenet"} </h2>
-      <h2>Count: {count} </h2>
-      <h2>Count2: {count2} </h2>
+      {/* <h2>Count: {count} </h2>
+      <h2>Count2: {count2} </h2> */}
       <h2>Location: Pune Maharashtra</h2>
       <h2>Contact: @MayurShelke</h2>
     </div>

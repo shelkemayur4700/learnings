@@ -1,4 +1,4 @@
-import { IMAGE_LINK } from "../utills/constants";
+import { IMAGE_LINK } from "../constants";
 
 const HotelCard = ({ resData }) => {
   const { name, avgRating, cloudinaryImageId, locality, cuisines } = resData;
