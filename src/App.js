@@ -14,7 +14,9 @@ const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
   return (
-    <div style={{ backgroundColor: "gray" }}>
+    <div
+    // style={{ backgroundColor: "gray" }}
+    >
       <Header />
       <Outlet />
       {/* <FooterComponent /> */}
