@@ -7,9 +7,9 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
   return (
     <div className="flex justify-between bg-pink-100 shadow-lg ">
-      <div className="img-container">
+      <div className="">
         <img
-          className="w-20"
+          className="w-20 p-2 "
           src="https://w7.pngwing.com/pngs/55/100/png-transparent-swiggy-hd-logo-thumbnail.png"
           alt="brand_logo"
         />

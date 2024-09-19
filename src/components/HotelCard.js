@@ -18,4 +18,6 @@ const HotelCard = ({ resData }) => {
   );
 };
 
+// Higher order component 
+
 export default HotelCard;

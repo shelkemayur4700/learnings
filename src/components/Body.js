@@ -8,7 +8,7 @@ const Body = () => {
   const rrestaurants = useRestData();
   const [filterRes, setFilterRes] = useState([]);
   const [searchText, setSearchText] = useState("");
-
+  console.log("res loist", filterRes);
   function topRated() {
     setFilterRes(filterRes?.filter((res) => res?.info?.avgRating > 4.2));
   }
