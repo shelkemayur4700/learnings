@@ -18,6 +18,17 @@ const HotelCard = ({ resData }) => {
   );
 };
 
-// Higher order component 
-
+// Higher order component
+export const withOpenLabel = (HotelCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute bg-black text-white m-6 p-2 rounded-lg ">
+          Open
+        </label>
+        <HotelCard {...props} />
+      </div>
+    );
+  };
+};
 export default HotelCard;

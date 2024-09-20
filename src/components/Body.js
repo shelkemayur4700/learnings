@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
-import HotelCard from "./HotelCard";
+import { useContext, useEffect, useState } from "react";
+import HotelCard, { withOpenLabel } from "./HotelCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useRestData from "../utills/useRestData";
+import UserContext from "../utills/UserContext";
 
 const Body = () => {
   const rrestaurants = useRestData();
   const [filterRes, setFilterRes] = useState([]);
   const [searchText, setSearchText] = useState("");
-  console.log("res loist", filterRes);
+
+  const { setUserName, loggedInUser } = useContext(UserContext);
+  const HotelwithOpenLabel = withOpenLabel(HotelCard);
+
   function topRated() {
     setFilterRes(filterRes?.filter((res) => res?.info?.avgRating > 4.2));
   }
@@ -55,8 +59,17 @@ const Body = () => {
             className="px-4 py-2 bg-gray-200 m-4 rounded-lg"
             onClick={topRated}
           >
-            Top rated
+            Top Rated Restaurant
           </button>
+          <label>UserName:</label>
+          <input
+            type="text"
+            className="border border-solid border-black rounded-lg p-1"
+            value={loggedInUser}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+          />
         </div>
       </div>
 
@@ -66,7 +79,11 @@ const Body = () => {
             key={restaurant.info.id}
             to={"/restaurant/" + restaurant.info.id}
           >
-            <HotelCard resData={restaurant.info} />
+            {restaurant?.info?.isOpen ? (
+              <HotelwithOpenLabel resData={restaurant.info} />
+            ) : (
+              <HotelCard resData={restaurant.info} />
+            )}
           </Link>
         ))}
       </div>

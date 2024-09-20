@@ -48,14 +48,14 @@ class UserClass extends React.Component {
         avatar_url: "",
       },
     };
-    console.log(this?.props?.name + "Child constructor");
+    // console.log(this?.props?.name + "Child constructor");
   }
   async componentDidMount() {
     // console.log(this?.props?.name + "Child componentDidMount");
-    // const data = await fetch("https://api.github.com/users/shelkemayur4700");
-    // const json = await data.json();
-    // console.log(json);
-    // this.setState({ data: json });
+    const data = await fetch("https://api.github.com/users/shelkemayur4700");
+    const json = await data.json();
+    console.log(json);
+    this.setState({ data: json });
     // this.time = setInterval(() => {
     //   console.log("timeout...");
     // }, 1000);
