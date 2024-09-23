@@ -1,7 +1,14 @@
+import { useDispatch } from "react-redux";
 import { IMAGE_LINK } from "../constants";
+import { addItem } from "../Redux/cartSlice";
 
 const ItemList = ({ items }) => {
-  console.log(items);
+  // console.log(items);
+  const dispatch = useDispatch();
+
+  const HandleaddItem = (item) => {
+    dispatch(addItem(item));
+  };
   return (
     <div>
       {items?.map((item) => (
@@ -31,7 +38,10 @@ const ItemList = ({ items }) => {
               className="w-20 rounded-lg "
               alt=""
             />
-            <button className="p-2 bg-white shadow-lg absolute m-auto mt-[55px] rounded-lg">
+            <button
+              className="p-2 bg-white shadow-lg absolute m-auto mt-[55px] rounded-lg"
+              onClick={() => HandleaddItem(item)}
+            >
               Add+
             </button>
           </div>

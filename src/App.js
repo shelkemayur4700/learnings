@@ -8,7 +8,9 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utills/UserContext";
-// import Grocery from "./components/Grocery";
+import { Provider } from "react-redux";
+import appStore from "./Redux/appStore";
+import Cart from "./components/Cart";
 
 const Grocery = lazy(() => import("./components/Grocery"));
 const About = lazy(() => import("./components/About"));
@@ -24,18 +26,14 @@ const AppLayout = () => {
     setUserName(data?.name);
   }, []);
   return (
-    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-      <div
-      // style={{ backgroundColor: "gray" }}
-      >
-        {/* UPDATING CONTEXT WITH ANOTHER VALUE ONLY FOR HEADER  */}
-        {/* <UserContext.Provider value={{ loggedInUser: "Tony Shark" }}> */}
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="App">
           <Header />
-        {/* </UserContext.Provider> */}
-        <Outlet />
-        {/* <FooterComponent /> */}
-      </div>
-    </UserContext.Provider>
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 const appRoute = createBrowserRouter([
@@ -71,6 +69,10 @@ const appRoute = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/Cart",
+        element: <Cart />,
       },
     ],
   },
