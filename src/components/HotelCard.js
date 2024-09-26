@@ -1,10 +1,13 @@
+import React from "react";
 import { IMAGE_LINK } from "../constants";
-
 const HotelCard = ({ resData }) => {
   const { name, avgRating, cloudinaryImageId, locality, cuisines } = resData;
 
   return (
-    <div className="m-4 p-4 w-[300px] bg-gray-100 rounded-xl shadow-lg ">
+    <div
+      data-testid="resCard"
+      className="m-4 p-4 w-[300px] bg-gray-100 rounded-xl shadow-lg "
+    >
       <img
         className="rounded-2xl"
         src={IMAGE_LINK + cloudinaryImageId}

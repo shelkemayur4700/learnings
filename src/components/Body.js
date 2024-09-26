@@ -1,3 +1,4 @@
+import React from "react";
 import { useContext, useEffect, useState } from "react";
 import HotelCard, { withOpenLabel } from "./HotelCard";
 import Shimmer from "./Shimmer";
@@ -16,7 +17,7 @@ const Body = () => {
   function topRated() {
     setFilterRes(filterRes?.filter((res) => res?.info?.avgRating > 4.2));
   }
-
+  
   function filterData(searchText, restaurants) {
     const filterData = restaurants.filter((restaurant) =>
       restaurant?.info?.name?.toLowerCase().includes(searchText?.toLowerCase())
@@ -34,6 +35,7 @@ const Body = () => {
       <div className="flex m-4 p-4">
         <div>
           <input
+            data-testid="searchInput"
             type="text"
             className="border border-solid border-black rounded-lg p-1"
             placeholder="Search"
