@@ -1,4 +1,5 @@
-/node_modules
-/.parcel-cache
-/dist
-/coverage
+/Namste-REACT/node_modules
+/Namste-REACT/.parcel-cache
+/Namste-REACT/dist
+/Namste-REACT/coverage
+/NAMSTE-NODE/DevTinder/BE/node_modules
